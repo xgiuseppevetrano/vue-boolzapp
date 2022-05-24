@@ -1,0 +1,21 @@
+/*----------
+    VAR
+----------*/
+:root {
+    --color-bg-primary: #009688;
+    --color-bg-secondary: #dbdbd2;
+    --color-bg-alert: #8edafc;
+    --color-bg-header: #e6dfd6;
+    --color-bg-sentbar: #f3eeea;
+    --color-hover-contact: #f4f5f5;
+    --color-bg-sent-message: #d5f9ba;
+    --color-bg-received-message: #fff;
+    --color-bg-input-search: #fafafa;
+}
+
+/*--------------
+    COMMONS
+--------------*/
+body {
+    font-family: 'Lato', sans-serif;
+}

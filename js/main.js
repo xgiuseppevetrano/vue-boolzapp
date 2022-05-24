@@ -4,6 +4,7 @@
 
 const app = new Vue({
     el: "#app",
+    currentIndex: 0,
     data: {
         contacts: [
             {
@@ -180,6 +181,9 @@ const app = new Vue({
             const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
             const hoursMinutes = date.substr(11, 5);
             return `${hoursMinutes}`
+        },
+        chosenChat(index) {
+            this.currentIndex = index
         }
     }
 });

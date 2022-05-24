@@ -44,7 +44,7 @@
             <!-- /search bar -->
             <!-- message list -->
             <div class="message-list">
-                <div class="contact" v-for="(contact, index) in contacts">
+                <div class="contact" v-for="(contact, index) in contacts" @click="chosenChat(index)">
                     <img :src="createSrc(index)" :alt="contact.name">
                     <div>
                         <span>{{contact.name}}</span>
@@ -72,6 +72,29 @@
                 </div>
             </div>
             <!-- /header chat -->
+            <!-- chat body -->
+            <div class="chat-body">
+                <div class="message sent-message">
+                   <span>Hai portato a spasso il cane?</span>
+                   <small class="message-time">15:30</small>              
+                </div>
+                <div class="message sent-message">
+                    <span>Ricordati di sistemare i panni</span>
+                    <small class="message-time">15:50</small>              
+                </div>
+                <div class="message received-message">
+                    <span>Tutto fatto!</span>
+                    <small class="message-time">16:15</small>              
+                </div> 
+            </div>
+            <!-- /chat body -->
+            <!-- sent message -->
+            <div class="write-message">
+                <i class="fa-regular fa-face-smile"></i>
+                <input type="text" placeholder="Scrivi un messaggio">
+                <i class="fa-solid fa-microphone"></i>
+            </div>
+            <!-- /sent message -->
         </div>
     </div>
 

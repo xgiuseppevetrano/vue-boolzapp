@@ -11,6 +11,16 @@
     --color-bg-sent-message: #d5f9ba;
     --color-bg-received-message: #fff;
     --color-bg-input-search: #fafafa;
+    --color-text-secondary: #b1b1b1;
+}
+
+/*------------
+    RESET
+------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /*--------------
@@ -18,4 +28,76 @@
 --------------*/
 body {
     font-family: 'Lato', sans-serif;
+    background: linear-gradient(to top, var(--color-bg-secondary)85%, var(--color-bg-primary)15%);
+    height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 25px auto;
+    height: 95%;
+    display: flex;
+}
+
+/*---------------
+    CHAT-LIST
+---------------*/
+.chat-list {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+/*---PROFILO PERSONALE---*/
+.personal-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-bg-header);
+    border-right: 1px solid var(--color-text-secondary);
+}
+
+.personal-profile img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.personal-profile span i {
+    color: var(--color-text-secondary);
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+/*---ALERT NOTIFICHE---*/
+.notification-alert {
+    padding: 15px;
+    background-color: var(--color-bg-alert);
+    display: flex;
+    align-items: center;
+}
+
+.notification-alert i {
+    background-color: #f2fbff;
+    padding: 12px 10px;
+    color: var(--color-bg-alert);
+    font-size: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notification-alert small {
+    display: block;
+}
+
+.notification-alert a {
+    color: var(--color-text-secondary);
+    display: inline-block;
+}
+
+/*-----------
+    CHAT
+-----------*/
+.chat {
+    width: 65%;
 }

@@ -42,6 +42,18 @@
                 <input type="text" placeholder="Cerca o inizia una nuova chat">
             </div>
             <!-- /search bar -->
+            <!-- message list -->
+            <div class="message-list">
+                <div class="user" v-for="(contact, index) in contacts">
+                    <img :src="createSrc(index)" :alt="contact.name">
+                    <div>
+                        <span>{{contact.name}}</span>
+                        <small>{{latestMessage(index)}}</small>
+                        <span class="hours">{{getHours(index)}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /message list -->
         </div>
         <div class="chat">
 

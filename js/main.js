@@ -168,5 +168,18 @@ const app = new Vue({
                 ],
             }
         ]
+    },
+    methods: {
+        createSrc(index) {
+            return `img/avatar${this.contacts[index].avatar}.jpg`
+        },
+        latestMessage(index) {
+            return this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
+        },
+        getHours(index) {
+            const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
+            const hoursMinutes = date.substr(11, 5);
+            return `${hoursMinutes}`
+        }
     }
 });

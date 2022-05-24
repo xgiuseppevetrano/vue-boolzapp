@@ -44,7 +44,7 @@
             <!-- /search bar -->
             <!-- message list -->
             <div class="message-list">
-                <div class="user" v-for="(contact, index) in contacts">
+                <div class="contact" v-for="(contact, index) in contacts">
                     <img :src="createSrc(index)" :alt="contact.name">
                     <div>
                         <span>{{contact.name}}</span>
@@ -56,7 +56,22 @@
             <!-- /message list -->
         </div>
         <div class="chat">
-
+            <!-- header chat -->
+            <div class="chat-header">
+                <div class="contact-info">
+                    <img src="img/avatar_1.jpg" alt="Michele">
+                    <div>
+                        <span>Michele</span>
+                        <small>Ultimo accesso oggi alle 12</small>
+                    </div>
+                </div>
+                <div class="contact-options">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-paperclip"></i>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            </div>
+            <!-- /header chat -->
         </div>
     </div>
 

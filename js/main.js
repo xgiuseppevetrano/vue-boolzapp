@@ -4,8 +4,8 @@
 
 const app = new Vue({
     el: "#app",
-    currentIndex: 0,
     data: {
+        currentIndex: 0,
         contacts: [
             {
                 name: 'Michele',
@@ -177,13 +177,26 @@ const app = new Vue({
         latestMessage(index) {
             return this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
         },
-        getHours(index) {
+        getHoursAndMinutes(index) {
             const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
             const hoursMinutes = date.substr(11, 5);
-            return `${hoursMinutes}`
+            return `${hoursMinutes}`;
+        },
+        getHoursAndMinutes(currentIndex) {
+            const date = this.contacts[currentIndex].messages[this.contacts[currentIndex].messages.length - 1].date;
+            const hoursMinutes = date.substr(11, 5);
+            return `${hoursMinutes}`;
         },
         chosenChat(index) {
-            this.currentIndex = index
-        }
+            this.currentIndex = index;
+        },
+        getHoursAndMinutesChat(index) {
+            const date = this.contacts[this.currentIndex].messages[index].date;
+            const hoursMinutes = date.substr(11, 5);
+            return `${hoursMinutes}`;
+        },
+        createSrcChat(currentIndex) {
+            return `img/avatar${this.contacts[currentIndex].avatar}.jpg`
+        },
     }
 });

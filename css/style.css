@@ -4,12 +4,12 @@
 :root {
     --color-bg-primary: #009688;
     --color-bg-secondary: #dbdbd2;
+    --color-bg-tertiary: #fff;
     --color-bg-alert: #8edafc;
     --color-bg-header: #e6dfd6;
     --color-bg-sentbar: #f3eeea;
     --color-hover-contact: #f4f5f5;
     --color-bg-sent-message: #d5f9ba;
-    --color-bg-received-message: #fff;
     --color-bg-input-search: #fafafa;
     --color-text-secondary: #b1b1b1;
 }
@@ -38,6 +38,10 @@ body {
     margin: 0 auto;
     height: 95%;
     display: flex;
+}
+
+* i {
+    cursor: pointer;
 }
 
 /*---------------
@@ -100,7 +104,7 @@ body {
 }
 
 .search-bar i {
-    background-color: #fff;
+    background-color: var(--color-bg-tertiary);
     padding: 8px 20px;
     color: var(--color-text-secondary);
 }
@@ -123,7 +127,7 @@ body {
 .contact {
     padding: 10px 15px;
     display: flex;
-    background-color: #fff;
+    background-color: var(--color-bg-tertiary);
     border-bottom: 1px solid #f5f5f5;
     position: relative;
 }
@@ -200,10 +204,10 @@ body {
 .chat-body {
     background-image: url("../img/mine.jpg");
     flex-grow: 1;
-    overflow-y: hidden;
     padding: 30px;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 .message {
@@ -228,7 +232,7 @@ body {
 }
 
 .received-message {
-    background-color: #fff;
+    background-color: var(--color-bg-tertiary);
 }
 
 /*--- SENT MESSAGE ---*/

@@ -49,7 +49,7 @@
                     <div>
                         <span>{{contact.name}}</span>
                         <small>{{latestMessage(index)}}</small>
-                        <span class="hours">{{getHours(index)}}</span>
+                        <span class="hours">{{getHoursAndMinutes(index)}}</span>
                     </div>
                 </div>
             </div>
@@ -59,10 +59,10 @@
             <!-- header chat -->
             <div class="chat-header">
                 <div class="contact-info">
-                    <img src="img/avatar_1.jpg" alt="Michele">
+                    <img :src="createSrc(currentIndex)" :alt="contacts[currentIndex].name">
                     <div>
-                        <span>Michele</span>
-                        <small>Ultimo accesso oggi alle 12</small>
+                        <span>{{contacts[currentIndex].name}}</span>
+                        <small>Ultimo accesso oggi alle {{getHoursAndMinutes(currentIndex)}}</small>
                     </div>
                 </div>
                 <div class="contact-options">
@@ -74,18 +74,10 @@
             <!-- /header chat -->
             <!-- chat body -->
             <div class="chat-body">
-                <div class="message sent-message">
-                   <span>Hai portato a spasso il cane?</span>
-                   <small class="message-time">15:30</small>              
+                <div class="message" :class="{'sent-message': message.status === 'sent', 'received-message': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
+                   <span>{{message.message}}</span>
+                   <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
                 </div>
-                <div class="message sent-message">
-                    <span>Ricordati di sistemare i panni</span>
-                    <small class="message-time">15:50</small>              
-                </div>
-                <div class="message received-message">
-                    <span>Tutto fatto!</span>
-                    <small class="message-time">16:15</small>              
-                </div> 
             </div>
             <!-- /chat body -->
             <!-- sent message -->

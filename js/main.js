@@ -1,3 +1,5 @@
+var dateTime = luxon.DateTime;
+
 const app = new Vue({
     el: "#app",
     data: {
@@ -190,9 +192,11 @@ const app = new Vue({
             return `${hoursMinutes}`;
         },
         sendNewMessage(currentIndex) {
+            const d = dateTime.now().toFormat("dd'/'LL'/'yyyy HH':'mm':'ss");
+            const date = d.toString();
             if(this.newMessage !== ' ' && this.newMessage !== null) {
                 const newMessage = {
-                    date: '10/01/2020 18:30:55',
+                    date: `${date}`,
                     message: this.newMessage,
                     status: 'sent',
                 };
@@ -201,12 +205,13 @@ const app = new Vue({
             }
             setTimeout(() => {
                 const newReceivedMessage = {
-                    date: '10/01/2020 18:31:55',
+                    date: `${date}`,
                     message: 'Ok!',
                     status: 'received',
                 }
                 this.contacts[currentIndex].messages.push(newReceivedMessage);
             }, 1000);
+            console.log(this.contacts[currentIndex].messages);
         },
     }
 });

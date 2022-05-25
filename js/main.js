@@ -5,6 +5,7 @@ const app = new Vue({
     data: {
         currentIndex: 0,
         newMessage: '',
+        searchName: '',
         contacts: [
             {
                 name: 'Michele',
@@ -169,7 +170,22 @@ const app = new Vue({
             }
         ]
     },
+    computed: {
+        filterNameChat() {
+            this.changeVisible();
+        }
+    },
     methods: {
+        changeVisible() {
+            this.searchName = this.searchName.toLowerCase();
+            this.contacts.forEach(elm => {
+                if ( this.searchName !== ' ' && !elm.name.toLowerCase().includes(this.searchName)) {
+                    elm.visible = false;
+                } else if (this.searchName !== null) {
+                    elm.visible = true;
+                }
+            });
+        },
         latestMessage(index) {
             return this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
         },
@@ -192,7 +208,7 @@ const app = new Vue({
             return `${hoursMinutes}`;
         },
         sendNewMessage(currentIndex) {
-            const d = dateTime.now().toFormat("dd'/'LL'/'yyyy HH':'mm':'ss");
+            const d = dateTime.now().toFormat("dd/LL/yyyy HH:mm:ss");
             const date = d.toString();
             if(this.newMessage !== ' ' && this.newMessage !== null) {
                 const newMessage = {
@@ -211,7 +227,6 @@ const app = new Vue({
                 }
                 this.contacts[currentIndex].messages.push(newReceivedMessage);
             }, 1000);
-            console.log(this.contacts[currentIndex].messages);
         },
     }
 });

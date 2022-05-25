@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Boolzapp</title>
     <!-- fogli di stile -->
     <link rel="stylesheet" href="css/style.css">
     <!-- font awesome -->
@@ -39,12 +39,12 @@
             <!-- search bar -->
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Cerca o inizia una nuova chat">
+                <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchName">
             </div>
             <!-- /search bar -->
             <!-- message list -->
             <div class="message-list">
-                <div class="contact" v-for="(contact, index) in contacts" @click="chosenChat(index)">
+                <div class="contact" v-for="(contact, index) in contacts" v-show="contact.visible" @click="chosenChat(index)">
                     <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                     <div>
                         <span>{{contact.name}}</span>

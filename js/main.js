@@ -178,25 +178,6 @@ const app = new Vue({
         }
     },
     methods: {
-        deleteAlert() {
-            this.alertNotifications = false;
-        },
-        DropDownMenu() {
-            this.menu = !this.menu;
-        },
-        deleteMessage(currentIndex, index) {
-            this.contacts[currentIndex].messages[index].splice(index, 1);
-        },
-        changeVisible() {
-            this.searchName = this.searchName.toLowerCase();
-            this.contacts.forEach(elm => {
-                if ( this.searchName !== ' ' && !elm.name.toLowerCase().includes(this.searchName)) {
-                    elm.visible = false;
-                } else if (this.searchName !== null) {
-                    elm.visible = true;
-                }
-            });
-        },
         latestMessage(index) {
             return this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
         },
@@ -239,5 +220,24 @@ const app = new Vue({
                 this.contacts[currentIndex].messages.push(newReceivedMessage);
             }, 1000);
         },
+        changeVisible() {
+            this.searchName = this.searchName.toLowerCase();
+            this.contacts.forEach(elm => {
+                if ( this.searchName !== ' ' && !elm.name.toLowerCase().includes(this.searchName)) {
+                    elm.visible = false;
+                } else if (this.searchName !== null) {
+                    elm.visible = true;
+                }
+            });
+        },
+        deleteAlert() {
+            this.alertNotifications = false;
+        },
+        DropDownMenu() {
+            this.menu = !this.menu;
+        },
+        deleteMessage(index) {
+            this.contacts[this.currentIndex].messages.splice(index, 1);
+        }
     }
 });

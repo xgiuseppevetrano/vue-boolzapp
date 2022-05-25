@@ -30,13 +30,15 @@ body {
     font-family: 'Lato', sans-serif;
     background: linear-gradient(to top, var(--color-bg-secondary)85%, var(--color-bg-primary)15%);
     height: 100vh;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 95%;
+    max-width: 1280px;
+    height: calc(100% - 60px);
+    width: 100%;
     display: flex;
 }
 
@@ -207,11 +209,11 @@ body {
     padding: 30px;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .message {
-    padding: 10px;
+    padding: 10px 10px 20px;
     border-radius: 10px;
     margin: 5px;
     width: 40%;

@@ -45,7 +45,7 @@
             <!-- message list -->
             <div class="message-list">
                 <div class="contact" v-for="(contact, index) in contacts" @click="chosenChat(index)">
-                    <img :src="createSrc(index)" :alt="contact.name">
+                    <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                     <div>
                         <span>{{contact.name}}</span>
                         <small>{{latestMessage(index)}}</small>
@@ -59,7 +59,7 @@
             <!-- header chat -->
             <div class="chat-header">
                 <div class="contact-info">
-                    <img :src="createSrc(currentIndex)" :alt="contacts[currentIndex].name">
+                    <img :src="`img/avatar${contacts[currentIndex].avatar}.jpg`" :alt="contacts[currentIndex].name">
                     <div>
                         <span>{{contacts[currentIndex].name}}</span>
                         <small>Ultimo accesso oggi alle {{getHoursAndMinutes(currentIndex)}}</small>
@@ -75,15 +75,15 @@
             <!-- chat body -->
             <div class="chat-body">
                 <div class="message" :class="{'sent-message': message.status === 'sent', 'received-message': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
-                   <span>{{message.message}}</span>
-                   <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
+                    <span>{{message.message}}</span>
+                    <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
                 </div>
             </div>
             <!-- /chat body -->
             <!-- sent message -->
             <div class="write-message">
                 <i class="fa-regular fa-face-smile"></i>
-                <input type="text" placeholder="Scrivi un messaggio">
+                <input type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendNewMessage(currentIndex)" v-model="newMessage">
                 <i class="fa-solid fa-microphone"></i>
             </div>
             <!-- /sent message -->

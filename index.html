@@ -28,11 +28,14 @@
             </div>
             <!-- /personal profile -->
             <!-- notifications alert -->
-            <div class="notification-alert">
-                <i class="fa-solid fa-bell-slash"></i>
-                <div>
-                    <small>Ricevi notifiche di nuovi messaggi</small>
-                    <small><a href="#">Attiva notifiche desktop</a></small>
+            <div class="notification-alert" v-show="alertNotifications">
+                <i class="fa-solid fa-xmark" @click="deleteAlert()"></i>
+                <div class="alert">
+                    <i class="fa-solid fa-bell-slash"></i>
+                    <div>
+                        <small>Ricevi notifiche di nuovi messaggi</small>
+                        <small><a href="#">Attiva notifiche desktop</a></small>
+                    </div>
                 </div>
             </div>
             <!-- /notifications alert -->
@@ -77,6 +80,12 @@
                 <div class="message" :class="{'sent-message': message.status === 'sent', 'received-message': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
                     <span>{{message.message}}</span>
                     <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
+                    <i class="fa-solid fa-angle-down" @click="DropDownMenu()"></i>
+                    <div class="menu" v-show="menu">
+                        <ul>
+                            <li @click="deleteMessage(currentIndex, index)">Elimina messaggio</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- /chat body -->

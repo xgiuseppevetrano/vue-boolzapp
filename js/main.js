@@ -6,6 +6,8 @@ const app = new Vue({
         currentIndex: 0,
         newMessage: '',
         searchName: '',
+        alertNotifications: true,
+        menu: false,
         contacts: [
             {
                 name: 'Michele',
@@ -176,6 +178,15 @@ const app = new Vue({
         }
     },
     methods: {
+        deleteAlert() {
+            this.alertNotifications = false;
+        },
+        DropDownMenu() {
+            this.menu = !this.menu;
+        },
+        deleteMessage(currentIndex, index) {
+            this.contacts[currentIndex].messages[index].splice(index, 1);
+        },
         changeVisible() {
             this.searchName = this.searchName.toLowerCase();
             this.contacts.forEach(elm => {

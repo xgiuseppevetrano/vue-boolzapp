@@ -7,7 +7,6 @@ const app = new Vue({
         newMessage: '',
         searchName: '',
         alertNotifications: true,
-        menu: false,
         contacts: [
             {
                 name: 'Michele',
@@ -175,6 +174,7 @@ const app = new Vue({
     computed: {
         filterNameChat() {
             this.changeVisible();
+            return this.contacts.filter((contact) => contact.visible === true);
         }
     },
     methods: {
@@ -183,30 +183,23 @@ const app = new Vue({
         },
         getHoursAndMinutes(index) {
             const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
-            const hoursMinutes = date.substr(11, 5);
-            return `${hoursMinutes}`;
-        },
-        getHoursAndMinutes(currentIndex) {
-            const date = this.contacts[currentIndex].messages[this.contacts[currentIndex].messages.length - 1].date;
-            const hoursMinutes = date.substr(11, 5);
-            return `${hoursMinutes}`;
+            return dateTime.fromFormat(date, "dd/MM/yyyy HH:mm:ss").toFormat('HH:mm');
         },
         chosenChat(index) {
             this.currentIndex = index;
         },
         getHoursAndMinutesChat(index) {
             const date = this.contacts[this.currentIndex].messages[index].date;
-            const hoursMinutes = date.substr(11, 5);
-            return `${hoursMinutes}`;
+            return dateTime.fromFormat(date, "dd/MM/yyyy HH:mm:ss").toFormat('HH:mm');
         },
         sendNewMessage(currentIndex) {
-            const d = dateTime.now().toFormat("dd/LL/yyyy HH:mm:ss");
-            const date = d.toString();
+            const date = dateTime.now().toFormat("dd/LL/yyyy HH:mm:ss");
             if(this.newMessage !== ' ' && this.newMessage !== null) {
                 const newMessage = {
                     date: `${date}`,
                     message: this.newMessage,
                     status: 'sent',
+                    menu: false,
                 };
                 this.contacts[currentIndex].messages.push(newMessage);
                 this.newMessage = '';
@@ -216,6 +209,7 @@ const app = new Vue({
                     date: `${date}`,
                     message: 'Ok!',
                     status: 'received',
+                    menu: false,
                 }
                 this.contacts[currentIndex].messages.push(newReceivedMessage);
             }, 1000);
@@ -233,11 +227,16 @@ const app = new Vue({
         deleteAlert() {
             this.alertNotifications = false;
         },
-        DropDownMenu() {
-            this.menu = !this.menu;
+        DropDownMenu(message) {
+            message.menu = !message.menu;
         },
         deleteMessage(index) {
             this.contacts[this.currentIndex].messages.splice(index, 1);
         }
-    }
+    },
+    created() {
+        this.contacts
+            .forEach(contact => contact.messages
+                .forEach(message => Vue.set(message, 'menu', false)));
+    },
 });

@@ -47,12 +47,12 @@
             <!-- /search bar -->
             <!-- message list -->
             <div class="message-list">
-                <div class="contact" v-for="(contact, index) in contacts" v-show="contact.visible" @click="chosenChat(index)">
+                <div class="contact" v-for="(contact, index) in filterNameChat" @click="chosenChat(index)">
                     <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                     <div>
                         <span>{{contact.name}}</span>
-                        <small>{{latestMessage(index)}}</small>
-                        <span class="hours">{{getHoursAndMinutes(index)}}</span>
+                        <small v-if="contact.messages.length > 0">{{latestMessage(index)}}</small>
+                        <span class="hours" v-if="contact.messages.length > 0">{{getHoursAndMinutes(index)}}</span>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     <img :src="`img/avatar${contacts[currentIndex].avatar}.jpg`" :alt="contacts[currentIndex].name">
                     <div>
                         <span>{{contacts[currentIndex].name}}</span>
-                        <small>Ultimo accesso oggi alle {{getHoursAndMinutes(currentIndex)}}</small>
+                        <small v-if="contacts[currentIndex].messages.length > 0">Ultimo accesso oggi alle {{getHoursAndMinutes(currentIndex)}}</small>
                     </div>
                 </div>
                 <div class="contact-options">
@@ -80,8 +80,8 @@
                 <div class="message" :class="{'sent-message': message.status === 'sent', 'received-message': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
                     <span>{{message.message}}</span>
                     <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
-                    <i class="fa-solid fa-angle-down" @click="DropDownMenu()"></i>
-                    <div class="menu" v-show="menu">
+                    <i class="fa-solid fa-angle-down" @click="DropDownMenu(message)"></i>
+                    <div class="menu" v-show="message.menu">
                         <ul>
                             <li @click="deleteMessage(index)">Elimina messaggio</li>
                         </ul>

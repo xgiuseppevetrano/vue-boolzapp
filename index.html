@@ -15,89 +15,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="app" class="container">
-        <div class="chat-list">
-            <!-- personal profile -->
-            <div class="personal-profile">
-                <img src="img/avatar_io.jpg" alt="img personal profile">
-                <span>
+    <div id="app" class="app">
+        <div class="app__left">
+            <div class="contact-personal">
+                <img class="contact-personal__img" src="img/avatar_io.jpg" alt="img personal profile">
+                <span class="contact-personal__setting">
                     <i class="fa-solid fa-circle-notch"></i>
                     <i class="fa-solid fa-message"></i>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </span>
             </div>
-            <!-- /personal profile -->
-            <!-- notifications alert -->
-            <div class="notification-alert" v-show="alertNotifications">
-                <i class="fa-solid fa-xmark" @click="deleteAlert()"></i>
-                <div class="alert">
-                    <i class="fa-solid fa-bell-slash"></i>
-                    <div>
-                        <small>Ricevi notifiche di nuovi messaggi</small>
-                        <small><a href="#">Attiva notifiche desktop</a></small>
+            <div class="contact-alert" v-show="alertNotifications">
+                <span class="contact-alert__delete" @click="deleteAlert()"><i class="fa-solid fa-xmark"></i></span>
+                <div class="contact-alert__wrapper">
+                    <span class="contact-alert__icon"><i class="fa-solid fa-bell-slash"></i></span>
+                    <div class="contact-alert__text-wrapper">
+                        <small class="contact-alert__text">Ricevi notifiche di nuovi messaggi</small>
+                        <a class="contact-alert__link" href="#">Attiva notifiche desktop</a>
                     </div>
                 </div>
             </div>
-            <!-- /notifications alert -->
-            <!-- search bar -->
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchName">
+            <div class="contact-search">
+                <span class="contact-search__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input class="contact-search__input" type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchName">
             </div>
-            <!-- /search bar -->
-            <!-- message list -->
-            <div class="message-list">
-                <div class="contact" v-for="(contact, index) in filterNameChat" @click="chosenChat(contact)">
-                    <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
-                    <div>
-                        <span>{{contact.name}}</span>
-                        <small v-if="contact.messages.length > 0">{{latestMessage(index)}}</small>
-                        <span class="hours" v-if="contact.messages.length > 0">{{getHoursAndMinutes(index)}}</span>
+            <div class="contact-list">
+                <div class="contact-list__item" v-for="(contact, index) in filterNameChat" @click="chosenChat(contact)">
+                    <img class="contact-list__item-img" :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
+                    <div class="contact-list__item-info">
+                        <span class="contact-list__item-name">{{contact.name}}</span>
+                        <small class="contact-list__item-message" v-if="contact.messages.length > 0">{{latestMessage(index)}}</small>
+                        <span class="contact-list__item-time" v-if="contact.messages.length > 0">{{getHoursAndMinutes(index)}}</span>
                     </div>
                 </div>
             </div>
-            <!-- /message list -->
         </div>
-        <div class="chat">
-            <!-- header chat -->
-            <div class="chat-header">
-                <div class="contact-info">
-                    <img :src="`img/avatar${contacts[currentIndex].avatar}.jpg`" :alt="contacts[currentIndex].name">
-                    <div>
-                        <span>{{contacts[currentIndex].name}}</span>
-                        <small v-if="contacts[currentIndex].messages.length > 0">Ultimo accesso oggi alle {{getHoursAndMinutes(currentIndex)}}</small>
+        <div class="app__right">
+            <div class="current-contact">
+                <div class="current-contact__info">
+                    <img class="current-contact__img" :src="`img/avatar${contacts[currentIndex].avatar}.jpg`" :alt="contacts[currentIndex].name">
+                    <div class="current-contact__wrapper">
+                        <span class="current-contact__name">{{contacts[currentIndex].name}}</span>
+                        <small class="current-contact__access" v-if="contacts[currentIndex].messages.length > 0">Ultimo accesso oggi alle {{getHoursAndMinutes(currentIndex)}}</small>
                     </div>
                 </div>
-                <div class="contact-options">
+                <div class="current-contact__options">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <i class="fa-solid fa-paperclip"></i>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </div>
             </div>
-            <!-- /header chat -->
-            <!-- chat body -->
-            <div class="chat-body">
-                <div class="message" :class="{'sent-message': message.status === 'sent', 'received-message': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
-                    <span>{{message.message}}</span>
-                    <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
-                    <div class="dropdown-menu">
-                        <i class="fa-solid fa-angle-down" @click="DropDownMenu(message)"></i>
+            <div class="current-message">
+                <div class="current-message__item" :class="{'current-message__sent': message.status === 'sent', 'current-message__received': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
+                    <span class="current-message__item-text">{{message.message}}</span>
+                    <small class="current-message__item-time">{{getHoursAndMinutesChat(index)}}</small>
+                    <div class="current-message__item-menu" @click="DropDownMenu(message)">
+                        <i class="fa-solid fa-angle-down"></i>
                     </div>
-                    <div class="menu" v-show="message.menu">
+                    <div class="current-message__delete" v-show="message.menu" @click="deleteMessage(index)">
                         <ul>
-                            <li @click="deleteMessage(index)">Elimina messaggio</li>
+                            <li class="current-message__delete-control">Elimina messaggio</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /chat body -->
-            <!-- sent message -->
-            <div class="write-message">
-                <i class="fa-regular fa-face-smile"></i>
-                <input type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendNewMessage(currentIndex)" v-model="newMessage">
-                <i class="fa-solid fa-microphone"></i>
+            <div class="current-answer">
+                <span class="current-answer__icon"><i class="fa-regular fa-face-smile"></i></span>
+                <input class="current-answer__input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendNewMessage(currentIndex)" v-model="newMessage">
+                <span class="current-answer__icon"><i class="fa-solid fa-microphone"></i></span>
             </div>
-            <!-- /sent message -->
         </div>
     </div>
 

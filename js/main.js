@@ -185,8 +185,8 @@ const app = new Vue({
             const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
             return dateTime.fromFormat(date, "dd/MM/yyyy HH:mm:ss").toFormat('HH:mm');
         },
-        chosenChat(index) {
-            this.currentIndex = index;
+        chosenChat(contact) {
+            this.currentIndex = this.contacts.indexOf(contact);
         },
         getHoursAndMinutesChat(index) {
             const date = this.contacts[this.currentIndex].messages[index].date;

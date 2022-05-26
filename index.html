@@ -47,7 +47,7 @@
             <!-- /search bar -->
             <!-- message list -->
             <div class="message-list">
-                <div class="contact" v-for="(contact, index) in filterNameChat" @click="chosenChat(index)">
+                <div class="contact" v-for="(contact, index) in filterNameChat" @click="chosenChat(contact)">
                     <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                     <div>
                         <span>{{contact.name}}</span>

@@ -80,7 +80,9 @@
                 <div class="message" :class="{'sent-message': message.status === 'sent', 'received-message': message.status === 'received'}" v-for="(message, index) in contacts[currentIndex].messages">
                     <span>{{message.message}}</span>
                     <small class="message-time">{{getHoursAndMinutesChat(index)}}</small>
-                    <i class="fa-solid fa-angle-down" @click="DropDownMenu(message)"></i>
+                    <div class="dropdown-menu">
+                        <i class="fa-solid fa-angle-down" @click="DropDownMenu(message)"></i>
+                    </div>
                     <div class="menu" v-show="message.menu">
                         <ul>
                             <li @click="deleteMessage(index)">Elimina messaggio</li>

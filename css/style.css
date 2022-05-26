@@ -241,10 +241,15 @@ body {
     color: var(--color-text-secondary);
 }
 
-.message i {
+.dropdown-menu {
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 15px;
+    display: none;
+}
+
+.message:hover .dropdown-menu {
+    display: block;
 }
 
 .sent-message {

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp</title>
-    <!-- fogli di stile -->
+    <!-- stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -81,7 +81,7 @@
             </div>
             <div class="current-answer">
                 <span class="current-answer__icon"><i class="fa-regular fa-face-smile"></i></span>
-                <input class="current-answer__input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendNewMessage(currentIndex)" v-model="newMessage">
+                <input class="current-answer__input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendNewMessage(currentIndex)" v-model="newMessage" pattern=".*\S+.*">
                 <span class="current-answer__icon"><i class="fa-solid fa-microphone"></i></span>
             </div>
         </div>

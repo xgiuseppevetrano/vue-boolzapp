@@ -1,54 +1,12 @@
-/*----------
-    VAR
-----------*/
-:root {
-    --color-bg-primary: #009688;
-    --color-bg-secondary: #dbdbd2;
-    --color-bg-tertiary: #fff;
-    --color-bg-alert: #8edafc;
-    --color-bg-header: #e6dfd6;
-    --color-bg-sentbar: #f3eeea;
-    --color-hover-contact: #f4f5f5;
-    --color-bg-sent-message: #d5f9ba;
-    --color-bg-input-search: #fafafa;
-    --color-text-secondary: #b1b1b1;
-}
-
 /*------------
-    RESET
+    IMPORT
 ------------*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/*--------------
-    COMMONS
---------------*/
-body {
-    font-family: 'Lato', sans-serif;
-    background: linear-gradient(to top, var(--color-bg-secondary)85%, var(--color-bg-primary)15%);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1.25rem;
-}
-
-.app {
-    max-width: 80rem;
-    height: calc(100% - 3.75rem);
-    width: 100%;
-    display: flex;
-}
-
-* i {
-    cursor: pointer;
-}
+@import "../confing/variables.css";
+@import "../confing/reset.css";
+@import "../confing/commons.css";
 
 /*---------------
-    CHAT-LIST
+    APP__LEFT
 ---------------*/
 .app__left {
     width: 35%;
@@ -56,14 +14,15 @@ body {
     flex-direction: column;
 }
 
-/*--- PERSONAL PROFILE ---*/
-.contact-personal {
+.contact-personal,
+.current-contact,
+.current-answer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .625rem;
     background-color: var(--color-bg-header);
-    border-right: .0625rem solid lightgray;
+    border-left: .0625rem solid lightgray;
 }
 
 .contact-personal__img {
@@ -79,7 +38,6 @@ body {
     gap: .9375rem;
 }
 
-/*--- NOTIFICATIONS ALERT ---*/
 .contact-alert {
     padding: .9375rem;
     background-color: var(--color-bg-alert);
@@ -112,7 +70,6 @@ body {
     font-size: .75rem;
 }
 
-/*--- SEARCH BAR ---*/
 .contact-search {
     background-color: var(--color-bg-input-search);
     padding: .3125rem;
@@ -137,7 +94,6 @@ body {
     height: 100%;
 }
 
-/*--- MESSAGE LIST ---*/
 .contact-list {
     overflow-y: auto;
     background-color: var(--color-bg-tertiary);
@@ -179,23 +135,13 @@ body {
     background-color: #f5f5f5;
 }
 
-/*-----------
-    CHAT
------------*/
+/*----------------
+    APP__RIGHT
+----------------*/
 .app__right {
     width: 65%;
     display: flex;
     flex-direction: column;
-}
-
-/*--- MESSAGE LIST ---*/
-.current-contact {
-    background-color: var(--color-bg-header);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .625rem;
-    border-bottom: .0625rem solid lightgray;
 }
 
 .current-contact__info {
@@ -221,7 +167,6 @@ body {
     margin-right: .9375rem;
 }
 
-/*--- CHAT BODY ---*/
 .current-message {
     background-image: url("../img/mine.jpg");
     flex-grow: 1;
@@ -285,16 +230,6 @@ body {
     cursor: pointer;
 }
 
-/*--- SENT MESSAGE ---*/
-.current-answer {
-    background-color: var(--color-bg-sentbar);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .3125rem 0;
-    border-left: .0625rem solid lightgray;
-}
-
 .current-answer__input {
     flex-grow: 1;
     padding: .625rem;
@@ -303,5 +238,5 @@ body {
 }
 
 .current-answer__icon {
-    margin: 0 1.5625rem;
+    margin: 0 .9375rem;
 }

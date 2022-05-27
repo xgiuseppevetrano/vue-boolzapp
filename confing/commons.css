@@ -1,0 +1,20 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to top, var(--color-bg-secondary)85%, var(--color-bg-primary)15%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.25rem;
+}
+
+.app {
+    max-width: 80rem;
+    height: calc(100% - 3.75rem);
+    width: 100%;
+    display: flex;
+}
+
+* i {
+    cursor: pointer;
+}

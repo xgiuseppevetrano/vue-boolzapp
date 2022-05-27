@@ -173,8 +173,10 @@ const app = new Vue({
     },
     computed: {
         filterNameChat() {
-            this.changeVisible();
-            return this.contacts.filter((contact) => contact.visible === true);
+            if (this.searchName !== ' ' && this.searchName !== null) {
+                this.searchName = this.searchName.toLowerCase();
+                return this.contacts.filter((contact) => contact.name.toLowerCase().includes(this.searchName));
+            }
         }
     },
     methods: {
@@ -205,24 +207,18 @@ const app = new Vue({
                 this.newMessage = '';
             }
             setTimeout(() => {
-                const newReceivedMessage = {
-                    date: `${date}`,
-                    message: 'Ok!',
-                    status: 'received',
-                    menu: false,
-                }
-                this.contacts[currentIndex].messages.push(newReceivedMessage);
+                this.receivedNewMessage(currentIndex);
             }, 1000);
         },
-        changeVisible() {
-            this.searchName = this.searchName.toLowerCase();
-            this.contacts.forEach(elm => {
-                if ( this.searchName !== ' ' && !elm.name.toLowerCase().includes(this.searchName)) {
-                    elm.visible = false;
-                } else if (this.searchName !== null) {
-                    elm.visible = true;
-                }
-            });
+        receivedNewMessage(currentIndex) {
+            const date = dateTime.now().toFormat("dd/LL/yyyy HH:mm:ss");
+            const newReceivedMessage = {
+                date: `${date}`,
+                message: 'Ok!',
+                status: 'received',
+                menu: false,
+            }
+            this.contacts[currentIndex].messages.push(newReceivedMessage);
         },
         deleteAlert() {
             this.alertNotifications = false;

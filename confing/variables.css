@@ -1,0 +1,12 @@
+:root {
+    --color-bg-primary: #009688;
+    --color-bg-secondary: #dbdbd2;
+    --color-bg-tertiary: #fff;
+    --color-bg-alert: #8edafc;
+    --color-bg-header: #e6dfd6;
+    --color-bg-sentbar: #f3eeea;
+    --color-hover-contact: #f4f5f5;
+    --color-bg-sent-message: #d5f9ba;
+    --color-bg-input-search: #fafafa;
+    --color-text-secondary: #b1b1b1;
+}
